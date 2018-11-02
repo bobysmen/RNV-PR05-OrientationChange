@@ -58,36 +58,81 @@ public class AvatarActivity extends AppCompatActivity {
         setupView();
         getIntentData();
 
-        imgAvatar1.setOnClickListener(v -> intentAvatarToMain(0));
+        imgAvatar1.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar1.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        imgAvatar2.setOnClickListener(v -> intentAvatarToMain(1));
+        imgAvatar2.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar2.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        imgAvatar3.setOnClickListener(v -> intentAvatarToMain(2));
+        imgAvatar3.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar3.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        imgAvatar4.setOnClickListener(v -> intentAvatarToMain(3));
+        imgAvatar4.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar4.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        imgAvatar5.setOnClickListener(v -> intentAvatarToMain(4));
+        imgAvatar5.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar5.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        imgAvatar6.setOnClickListener(v -> intentAvatarToMain(5));
+        imgAvatar6.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar6.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        lblAvatar1.setOnClickListener(v -> intentAvatarToMain(0));
+        lblAvatar1.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar1.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        lblAvatar2.setOnClickListener(v -> intentAvatarToMain(1));
+        lblAvatar2.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar2.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        lblAvatar3.setOnClickListener(v -> intentAvatarToMain(2));
+        lblAvatar3.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar3.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        lblAvatar4.setOnClickListener(v -> intentAvatarToMain(3));
+        lblAvatar4.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar4.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        lblAvatar5.setOnClickListener(v -> intentAvatarToMain(4));
+        lblAvatar5.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar5.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
 
-        lblAvatar6.setOnClickListener(v -> intentAvatarToMain(5));
+        lblAvatar6.setOnClickListener(v -> {
+            allImageColorDefault();
+            imgAvatar6.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
+        });
     }
 
-    private void intentAvatarToMain(int i) {
+    private void intentAvatarToMain(long i) {
         Intent intentOut = new Intent();
-        intentOut.putExtra(EXTRA_AVATAR_TO_MAIN, avatares.get(i));
+        intentOut.putExtra(EXTRA_AVATAR_TO_MAIN, avatares.get((int) i-1));
         setResult(RESULT_OK, intentOut);
         finish();
+    }
+
+    private void allImageColorDefault(){
+        imgAvatar1.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_not_selected_image_alpha));
+        imgAvatar2.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_not_selected_image_alpha));
+        imgAvatar3.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_not_selected_image_alpha));
+        imgAvatar4.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_not_selected_image_alpha));
+        imgAvatar5.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_not_selected_image_alpha));
+        imgAvatar6.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_not_selected_image_alpha));
     }
 
     private void setupView() {
@@ -131,17 +176,17 @@ public class AvatarActivity extends AppCompatActivity {
 
     private void setColorSelectAvatar(long id) {
         if(id==CAT1_ID){
-            imgAvatar1.setColorFilter(R.color.avatar_label_background);
+            imgAvatar1.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
         }else if(id==CAT2_ID){
-            imgAvatar2.setColorFilter(R.color.avatar_label_background);
+            imgAvatar2.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
         }else if(id==CAT3_ID){
-            imgAvatar3.setColorFilter(R.color.avatar_label_background);
+            imgAvatar3.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
         }else if(id==CAT4_ID){
-            imgAvatar4.setColorFilter(R.color.avatar_label_background);
+            imgAvatar4.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
         }else if(id==CAT5_ID){
-            imgAvatar5.setColorFilter(R.color.avatar_label_background);
+            imgAvatar5.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
         }else if(id==CAT6_ID){
-            imgAvatar6.setColorFilter(R.color.avatar_label_background);
+            imgAvatar6.setAlpha(ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha));
         }
     }
 
@@ -162,7 +207,19 @@ public class AvatarActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.mnuSelect) {
-            // TODO
+            if(imgAvatar1.getAlpha()==ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha)){
+                intentAvatarToMain(CAT1_ID);
+            }else if(imgAvatar2.getAlpha()==ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha)){
+                intentAvatarToMain(CAT2_ID);
+            }else if(imgAvatar3.getAlpha()==ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha)){
+                intentAvatarToMain(CAT3_ID);
+            }else if(imgAvatar4.getAlpha()==ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha)){
+                intentAvatarToMain(CAT4_ID);
+            }else if(imgAvatar5.getAlpha()==ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha)){
+                intentAvatarToMain(CAT5_ID);
+            }else if(imgAvatar6.getAlpha()==ResourcesUtils.getFloat(this, R.dimen.avatar_selected_image_alpha)){
+                intentAvatarToMain(CAT6_ID);
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
