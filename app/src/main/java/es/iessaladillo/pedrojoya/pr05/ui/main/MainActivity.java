@@ -44,7 +44,6 @@ import static es.iessaladillo.pedrojoya.pr05.utils.ValidationUtils.isValidUrl;
 public class MainActivity extends AppCompatActivity {
 
     public final int RC_IMG_AVATAR=1;
-    public final String AVATAR="AVATAR";
 
     private TextView lblName;
     private EditText txtName;
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgWeb;
     private ImageView imgAvatar;
     private TextView lblAvatar;
-    private Avatar avatar;
+    //private Avatar avatar;
 
     private MainActivityViewModel viewModel;
 
