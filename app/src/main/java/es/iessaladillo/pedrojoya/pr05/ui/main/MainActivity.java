@@ -44,6 +44,7 @@ import static es.iessaladillo.pedrojoya.pr05.utils.ValidationUtils.isValidUrl;
 public class MainActivity extends AppCompatActivity {
 
     public final int RC_IMG_AVATAR=1;
+    public final String AVATAR="AVATAR";
 
     private TextView lblName;
     private EditText txtName;
@@ -105,10 +106,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         imgAvatar.setOnClickListener(v -> {
-            AvatarActivity.startForResult(MainActivity.this, RC_IMG_AVATAR, avatar);
+            AvatarActivity.startForResult(MainActivity.this, RC_IMG_AVATAR, viewModel.getAvatar());
         });
         lblAvatar.setOnClickListener(v -> {
-            AvatarActivity.startForResult(MainActivity.this, RC_IMG_AVATAR, avatar);
+            AvatarActivity.startForResult(MainActivity.this, RC_IMG_AVATAR, viewModel.getAvatar());
         });
         //OnEditorActionListener IME
         txtWeb.setOnEditorActionListener((v, actionId, event) -> {
@@ -211,13 +212,11 @@ public class MainActivity extends AppCompatActivity {
 
     //Recepcion datos
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(resultCode==RESULT_OK && requestCode==RC_IMG_AVATAR){
             if(data!=null && data.hasExtra(AvatarActivity.EXTRA_AVATAR_TO_MAIN)){
-                avatar = data.getParcelableExtra(AvatarActivity.EXTRA_AVATAR_TO_MAIN);
-                viewModel.setAvatar(avatar);
+                viewModel.setAvatar(data.getParcelableExtra(AvatarActivity.EXTRA_AVATAR_TO_MAIN));
                 imgAvatar.setImageResource(viewModel.getAvatar().getImageResId());
                 lblAvatar.setText(viewModel.getAvatar().getName());
             }
@@ -320,8 +319,7 @@ public class MainActivity extends AppCompatActivity {
         imgAvatar.setTag(viewModel.getAvatar().getImageResId());
         lblAvatar.setText(viewModel.getAvatar().getName());
         //Initial value avatar
-        avatar=getInstance().getDefaultAvatar();
-        viewModel.setAvatar(avatar);
+        viewModel.setAvatar(getInstance().getDefaultAvatar());
 
     }
 

@@ -48,6 +48,8 @@ public class AvatarActivity extends AppCompatActivity {
     private TextView lblAvatar5;
     private TextView lblAvatar6;
 
+    private AvatarActivityViewModel viewModel;
+
     @VisibleForTesting
     public static final String EXTRA_AVATAR = "EXTRA_AVATAR";
 
@@ -55,6 +57,7 @@ public class AvatarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avatar);
+        viewModel = ViewModelProviders.of(this).get(AvatarActivityViewModel.class);
         setupView();
         getIntentData();
 
@@ -170,7 +173,8 @@ public class AvatarActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent!=null && intent.hasExtra(EXTRA_AVATAR_FROM_MAIN)){
             avatarIn = intent.getParcelableExtra(EXTRA_AVATAR_FROM_MAIN);
-            setColorSelectAvatar(avatarIn.getId());
+            viewModel.setAvatar(avatarIn);
+            setColorSelectAvatar(viewModel.getAvatar().getId());
         }
     }
 
